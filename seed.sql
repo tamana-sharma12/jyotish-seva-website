@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2026 at 07:31 AM
+-- Generation Time: Mar 18, 2026 at 09:41 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -80,10 +80,7 @@ CREATE TABLE `astrologer_info` (
 --
 
 INSERT INTO `astrologer_info` (`id`, `name`, `tagline`, `bio`, `photo_url`, `bg_img`, `experience_years`, `specialties`, `phone`, `email`, `created_at`) VALUES
-(1, 'Acharya Sharma', 'Expert Vedic Astrologer & Vastu Consultant', 'Acharya Sharma has over 15 years of experience in helping people find their path.', 'https://images.pexels.com/photos/6014325/pexels-photo-6014325.jpeg', 'https://images.pexels.com', 15, 'Vedic Astrology, Kundli Reading, Vastu Shastra', '9876543210', 'contact@jyotishseva.com', '2026-03-09 06:07:03'),
-(2, 'Acharya Rahul Shastri', NULL, '20+ saal ka anubhav Vedic Jyotish mein.', 'assets/images/astrologer.jpg', NULL, NULL, 'Career, Marriage, Health', NULL, NULL, '2026-03-10 11:56:54'),
-(3, 'Jyotish Ji', NULL, NULL, NULL, 'https://images.pexels.com/photos/6014328/pexels-photo-6014328.jpeg', NULL, NULL, NULL, NULL, '2026-03-18 06:19:40'),
-(4, '', NULL, NULL, 'https://images.pexels.com/photos/6014325/pexels-photo-6014325.jpeg', 'https://images.pexels.com', NULL, NULL, NULL, NULL, '2026-03-18 06:20:22');
+(1, 'Dr. Vedika Rajvansh', 'Empowering Your Life Journey through Ancient Vedic Wisdom, Precision Birth-Chart Analysis, and Divine Spiritual Remedies for a Prosperous and Harmonious Future.', 'Dr. Vedika Rajvansh is a highly respected Vedic Scholar and Spiritual Life Coach with a profound understanding of celestial impacts on human life. Over the years, she has helped thousands of individuals worldwide discover their true purpose, navigate career complexities, and mend broken relationships through her empathetic and scientific approach to ancient shastras. Her mission is to illuminate the path of success and mental peace for everyone who seeks divine guidance.', 'https://images.pexels.com/photos/7176026/pexels-photo-7176026.jpeg', 'https://images.pexels.com/photos/6014328/pexels-photo-6014328.jpeg', 18, 'Advanced Vedic Astrology, Corporate Vastu Shastra, Gemology Consultant, Lal Kitab Remedies, Medical Astrology', '9876543210', 'contact@jyotishseva.com', '2026-03-09 06:07:03');
 
 -- --------------------------------------------------------
 
