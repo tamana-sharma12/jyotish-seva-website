@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2026 at 06:16 AM
+-- Generation Time: Mar 18, 2026 at 06:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -67,6 +67,7 @@ CREATE TABLE `astrologer_info` (
   `tagline` varchar(300) DEFAULT NULL,
   `bio` text DEFAULT NULL,
   `photo_url` varchar(500) DEFAULT NULL,
+  `bg_img` varchar(255) DEFAULT NULL,
   `experience_years` int(11) DEFAULT NULL,
   `specialties` varchar(500) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
@@ -78,9 +79,9 @@ CREATE TABLE `astrologer_info` (
 -- Dumping data for table `astrologer_info`
 --
 
-INSERT INTO `astrologer_info` (`id`, `name`, `tagline`, `bio`, `photo_url`, `experience_years`, `specialties`, `phone`, `email`, `created_at`) VALUES
-(1, 'Acharya Sharma', 'Expert Vedic Astrologer & Vastu Consultant', 'Acharya Sharma has over 15 years of experience in helping people find their path.', 'assets/images/astrologer.jpg', 15, 'Vedic Astrology, Kundli Reading, Vastu Shastra', '9876543210', 'contact@jyotishseva.com', '2026-03-09 06:07:03'),
-(2, 'Acharya Rahul Shastri', NULL, '20+ saal ka anubhav Vedic Jyotish mein.', 'assets/images/astrologer.jpg', NULL, 'Career, Marriage, Health', NULL, NULL, '2026-03-10 11:56:54');
+INSERT INTO `astrologer_info` (`id`, `name`, `tagline`, `bio`, `photo_url`, `bg_img`, `experience_years`, `specialties`, `phone`, `email`, `created_at`) VALUES
+(1, 'Acharya Sharma', 'Expert Vedic Astrologer & Vastu Consultant', 'Acharya Sharma has over 15 years of experience in helping people find their path.', 'assets/images/astrologer.jpg', NULL, 15, 'Vedic Astrology, Kundli Reading, Vastu Shastra', '9876543210', 'contact@jyotishseva.com', '2026-03-09 06:07:03'),
+(2, 'Acharya Rahul Shastri', NULL, '20+ saal ka anubhav Vedic Jyotish mein.', 'assets/images/astrologer.jpg', NULL, NULL, 'Career, Marriage, Health', NULL, NULL, '2026-03-10 11:56:54');
 
 -- --------------------------------------------------------
 
