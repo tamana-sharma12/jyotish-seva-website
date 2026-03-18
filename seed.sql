@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2026 at 06:53 AM
+-- Generation Time: Mar 18, 2026 at 07:31 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -80,8 +80,10 @@ CREATE TABLE `astrologer_info` (
 --
 
 INSERT INTO `astrologer_info` (`id`, `name`, `tagline`, `bio`, `photo_url`, `bg_img`, `experience_years`, `specialties`, `phone`, `email`, `created_at`) VALUES
-(1, 'Acharya Sharma', 'Expert Vedic Astrologer & Vastu Consultant', 'Acharya Sharma has over 15 years of experience in helping people find their path.', 'assets/images/astrologer.jpg', NULL, 15, 'Vedic Astrology, Kundli Reading, Vastu Shastra', '9876543210', 'contact@jyotishseva.com', '2026-03-09 06:07:03'),
-(2, 'Acharya Rahul Shastri', NULL, '20+ saal ka anubhav Vedic Jyotish mein.', 'assets/images/astrologer.jpg', NULL, NULL, 'Career, Marriage, Health', NULL, NULL, '2026-03-10 11:56:54');
+(1, 'Acharya Sharma', 'Expert Vedic Astrologer & Vastu Consultant', 'Acharya Sharma has over 15 years of experience in helping people find their path.', 'https://images.pexels.com/photos/6014325/pexels-photo-6014325.jpeg', 'https://images.pexels.com', 15, 'Vedic Astrology, Kundli Reading, Vastu Shastra', '9876543210', 'contact@jyotishseva.com', '2026-03-09 06:07:03'),
+(2, 'Acharya Rahul Shastri', NULL, '20+ saal ka anubhav Vedic Jyotish mein.', 'assets/images/astrologer.jpg', NULL, NULL, 'Career, Marriage, Health', NULL, NULL, '2026-03-10 11:56:54'),
+(3, 'Jyotish Ji', NULL, NULL, NULL, 'https://images.pexels.com/photos/6014328/pexels-photo-6014328.jpeg', NULL, NULL, NULL, NULL, '2026-03-18 06:19:40'),
+(4, '', NULL, NULL, 'https://images.pexels.com/photos/6014325/pexels-photo-6014325.jpeg', 'https://images.pexels.com', NULL, NULL, NULL, NULL, '2026-03-18 06:20:22');
 
 -- --------------------------------------------------------
 
@@ -326,7 +328,7 @@ ALTER TABLE `appointments`
 -- AUTO_INCREMENT for table `astrologer_info`
 --
 ALTER TABLE `astrologer_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `bookings`
