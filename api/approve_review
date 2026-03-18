@@ -1,0 +1,25 @@
+<?php
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+require_once '../config/db.php';
+
+$data = json_decode(file_get_contents("php://input"), true);
+$review_id = $data['review_id'] ?? null;
+
+if (!$review_id) {
+    echo json_encode(["success" => false, "message" => "Review ID is required"]);
+    exit;
+}
+
+try {
+    // Status update logic
+    $sql = "UPDATE reviews SET is_approved = 1 WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$review_id]);
+
+    echo json_encode(["success" => true, "message" => "Review approved successfully!"]);
+} catch (PDOException $e) {
+    echo json_encode(["success" => false, "message" => "Database Error"]);
+}
+?>
