@@ -1,0 +1,15 @@
+{
+    "name": "taman/astrologer",
+    "autoload": {
+        "psr-4": {
+            "Taman\\Astrologer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tamanna",
+            "email": "tamanasharma863@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Sabhi requests ko api/index.php par bhej do agar file exist nahi karti
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/(.*)$ api/index.php?route=$1 [QSA,L]
