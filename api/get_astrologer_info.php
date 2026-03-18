@@ -8,8 +8,8 @@ header("Access-Control-Allow-Methods: GET");
 require_once '../config/db.php';
 
 try {
-    // Task B3: Naye columns ke saath query
-    $query = "SELECT name, tagline, bio, photo_url, experience_years, specialties, phone, email 
+    // Task B3: bg_img column ke saath query update ki gayi hai
+    $query = "SELECT name, tagline, bio, photo_url, bg_img, experience_years, specialties, phone, email 
               FROM astrologer_info 
               LIMIT 1";
     
