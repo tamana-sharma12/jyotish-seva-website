@@ -2,30 +2,41 @@
 // .env file ka raasta (Path)
 $envPath = __DIR__ . '/../.env';
 
-// Agar .env file exists karti hai toh use load karo
+// .env Loader logic (Same as yours)
 if (file_exists($envPath)) {
     $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
-        if (strpos(trim($line), '#') === 0) continue; // Comments skip karo
-        list($name, $value) = explode('=', $line, 2);
-        $_ENV[trim($name)] = trim($value);
+        $line = trim($line);
+        if (empty($line) || strpos($line, '#') === 0) continue; 
+        if (strpos($line, '=') !== false) {
+            list($name, $value) = explode('=', $line, 2);
+            $_ENV[trim($name)] = trim($value);
+        }
     }
 }
 
-// .env se data uthao (Agar nahi mile toh default use karo)
 $host     = $_ENV['DB_HOST'] ?? 'localhost';
 $db_name  = $_ENV['DB_NAME'] ?? 'jyotish_db';
 $username = $_ENV['DB_USER'] ?? 'root';
 $password = $_ENV['DB_PASS'] ?? '';
 
+// --- TASK B9: SECURE PDO OPTIONS ---
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, 
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,       
+    PDO::ATTR_EMULATE_PREPARES   => false,                  // SQL Injection PROTECTION (OFF emulation)
+];
+
 try {
-    $conn = new PDO("mysql:host=$host;dbname=$db_name", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    
-    // Check karne ke liye:
-    // echo "Connected using .env settings!"; 
+    $conn = new PDO("mysql:host=$host;dbname=$db_name;charset=utf8mb4", $username, $password, $options);
 } catch(PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
+    // --- TASK B9: ERROR LOGGING (User ko raw error mat dikhao) ---
+    error_log("DB Connection Error: " . $e->getMessage()); 
+    http_response_code(500); // Sahi Status Code
+    die(json_encode(["success" => false, "message" => "Internal Server Error"]));
 }
+
+// Meta details (Same as yours)
+if(!defined('META_ACCESS_TOKEN')) define('META_ACCESS_TOKEN', $_ENV['META_ACCESS_TOKEN'] ?? '');
+if(!defined('META_PIXEL_ID')) define('META_PIXEL_ID', $_ENV['META_PIXEL_ID'] ?? '');
 ?>

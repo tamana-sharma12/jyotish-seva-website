@@ -1,0 +1,89 @@
+{
+    "time": "2026-03-19 08:34:42",
+    "status": "MOCK_MODE",
+    "payload": {
+        "data": [
+            {
+                "event_name": "Purchase",
+                "event_time": 1773905682,
+                "action_source": "website",
+                "event_id": "JS-298D9D",
+                "user_data": {
+                    "em": [
+                        "973dfe463ec85785f5f95af5ba3906eedb2d931c24e69824a89ea65dba4e813b"
+                    ],
+                    "ph": [
+                        "7619ee8cea49187f309616e30ecf54be072259b43760f1f550a644945d5572f2"
+                    ],
+                    "client_ip_address": "127.0.0.1",
+                    "client_user_agent": "Thunder Client (https:\/\/www.thunderclient.com)"
+                },
+                "custom_data": {
+                    "value": 501,
+                    "currency": "INR"
+                },
+                "event_source_url": "http:\/\/localhost\/jyotish\/success"
+            }
+        ]
+    }
+}
+{
+    "time": "2026-03-19 11:50:30",
+    "status": "MOCK_MODE",
+    "payload": {
+        "data": [
+            {
+                "event_name": "Purchase",
+                "event_time": 1773917430,
+                "action_source": "website",
+                "event_id": "JS-60830C",
+                "user_data": {
+                    "em": [
+                        "973dfe463ec85785f5f95af5ba3906eedb2d931c24e69824a89ea65dba4e813b"
+                    ],
+                    "ph": [
+                        "7619ee8cea49187f309616e30ecf54be072259b43760f1f550a644945d5572f2"
+                    ],
+                    "client_ip_address": "127.0.0.1",
+                    "client_user_agent": "Thunder Client (https:\/\/www.thunderclient.com)",
+                    "fbc": null
+                },
+                "custom_data": {
+                    "value": 501,
+                    "currency": "INR"
+                },
+                "event_source_url": "http:\/\/localhost\/jyotish\/success"
+            }
+        ]
+    }
+}
+{
+    "time": "2026-03-19 11:57:15",
+    "status": "MOCK_MODE",
+    "payload": {
+        "data": [
+            {
+                "event_name": "Purchase",
+                "event_time": 1773917835,
+                "action_source": "website",
+                "event_id": "JS-BA1945",
+                "user_data": {
+                    "em": [
+                        "b8a540005b96c041b6b71b7233a370787511dc61fba4500c81cc3ab1a84f93c9"
+                    ],
+                    "ph": [
+                        "a648418b224339f6ed10854cf3bc903a01c47660fda27dcd09ec4fed79880aeb"
+                    ],
+                    "client_ip_address": "127.0.0.1",
+                    "client_user_agent": "Thunder Client (https:\/\/www.thunderclient.com)",
+                    "fbc": "IwAR3_fake_fb_click_id"
+                },
+                "custom_data": {
+                    "value": 501,
+                    "currency": "INR"
+                },
+                "event_source_url": "http:\/\/localhost\/jyotish\/success"
+            }
+        ]
+    }
+}

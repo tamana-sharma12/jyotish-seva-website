@@ -1,25 +1,43 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
+// 1. Security & Header Setup
+require_once 'middleware.php';
+checkAdminSession(); // Validate admin access
 require_once '../config/db.php';
 
-$data = json_decode(file_get_contents("php://input"), true);
-$review_id = $data['review_id'] ?? null;
+header('Content-Type: application/json');
 
+// 2. Read JSON Input Data (Task Requirement: PUT/POST)
+$data = json_decode(file_get_contents("php://input"), true);
+$review_id = $data['id'] ?? null;
+
+// 3. Validation: Check if Review ID is provided
 if (!$review_id) {
-    echo json_encode(["success" => false, "message" => "Review ID is required"]);
+    http_response_code(400);
+    echo json_encode(["success" => false, "message" => "Review ID is required."]);
     exit;
 }
 
 try {
-    // Status update logic
-    $sql = "UPDATE reviews SET is_approved = 1 WHERE id = ?";
-    $stmt = $conn->prepare($sql);
+    // 4. Update query to set is_approved = 1 (Task Line 9)
+    $stmt = $conn->prepare("UPDATE reviews SET is_approved = 1 WHERE id = ?");
     $stmt->execute([$review_id]);
 
-    echo json_encode(["success" => true, "message" => "Review approved successfully!"]);
+    // Check if the review actually existed and was updated
+    if ($stmt->rowCount() > 0) {
+        echo json_encode([
+            "success" => true,
+            "message" => "Review approved successfully and is now public."
+        ]);
+    } else {
+        echo json_encode([
+            "success" => false, 
+            "message" => "Review not found or already approved."
+        ]);
+    }
+
 } catch (PDOException $e) {
-    echo json_encode(["success" => false, "message" => "Database Error"]);
+    // Error Handling
+    http_response_code(500);
+    echo json_encode(["success" => false, "message" => "Database Error: " . $e->getMessage()]);
 }
 ?>
