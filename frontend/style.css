@@ -1,0 +1,577 @@
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Hero container */
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+   display: flex;
+    flex-direction: column; /* ਤਾਂ ਜੋ ਨਵਬਾਰ ਉੱਪਰ ਰਹੇ ਅਤੇ ਕੰਟੈਂਟ ਹੇਠਾਂ */
+}
+
+/* Transparent overlay */
+.hero-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(54, 29, 84, 0.5); /* Purple/goldish with 50% opacity */
+  z-index: 0;
+}
+/* Navbar styling */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  background-color: #4A1A6B;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #b8860b; 
+}
+
+.logo .icon {
+  margin-right: 10px;
+}
+
+/* Navbar links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  text-align: center;
+}
+
+.nav-links li a {
+  color: #fff8EE;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #B8860B;
+}
+
+/* Nav right: button + menu toggle */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.book-btn {
+ padding: 10px 25px;
+  background: #4A1A6B;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #fff8EE;
+  
+  border-radius: 7px;
+  transition: all 0.3s ease;
+}
+
+.book-btn:hover {
+  background: #4A1A6B;
+  color: #fff8EE;
+  border-radius: 7px;
+}
+
+/* Hamburger menu */
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  color: #fff8EE;
+  background-color: #4A1A6B;
+  cursor: pointer;
+}
+
+/* Hero content */
+.hero-content {
+    padding-top: 120px; /* Navbar ਦੀ ਜਗ੍ਹਾ ਛੱਡਣ ਲਈ */
+    position: relative;
+    top: 200px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#hero-heading {
+    color: #fff8EE !important; /* ਗੋਲਡਨ/ਵਾਈਟ ਰੰਗ */
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: block !important; /* ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਇਹ ਛੁਪਿਆ ਨਾ ਹੋਵੇ */
+}
+
+
+
+.hero-content h1 {
+  font-family: 'Cinzel', 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #fff8EE; /* goldish purple */
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.hero-content .sub-heading {
+   font-family: 'Lato', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #ccc; /* thoda light color */
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn-book, .btn-contact {
+  padding: 10px 25px;
+  font-size: 1rem;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-book {
+  background-color: #4A1A6B;
+  border: none;
+  color: #fff8EE;
+}
+
+.btn-book:hover {
+  background-color: #fff8EE;
+  color: #000;
+  border: 1px solid #B8860B;
+}
+
+
+
+
+.btn-book {
+  padding: 10px 25px;
+  background: #4A1A6B;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #fff8EE;
+
+  border-radius: 7px;
+  transition: all 0.3s ease;
+}
+
+.btn-book:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* Responsive styles */
+
+/* Tablets: 768px */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 30px;
+  }
+  .nav-links {
+    position: absolute;
+    top: 65px;
+    right: -100%;
+    flex-direction: column;
+    background: rgba(0,0,0,0.7);
+    width: 200px;
+    gap: 0;
+    transition: right 0.3s ease;
+  }
+  .nav-links li {
+    padding: 15px;
+    border-bottom: 1px solid #fff;
+  }
+  .nav-links.active {
+    right: 0;
+  }
+  .menu-toggle {
+    display: block;
+  }
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+  .btn-book {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile: 480px */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+  .hero-content h1 {
+    font-size: 1.2rem;
+  }
+  .btn-book {
+    padding: 6px 15px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Laptops: 1024px */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 15px 40px;
+  }
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* About Section Main Container */
+.about-section {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #4A1A6B;
+  padding: 80px 50px;
+  gap: 40px;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Heading Design */
+.about-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.about-header h3 {
+  color: #b8860b;
+  font-family: 'Cinzel', serif;
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.header-line {
+  width: 120px;
+  height: 2px;
+  background: #b8860b;
+  margin: 0 auto;
+  position: relative;
+}
+
+.header-line::after {
+  content: '✦';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4A1A6B;
+  padding: 0 15px;
+  color: #b8860b;
+  font-size: 1.2rem;
+}
+
+/* Left Content Styling */
+.about-left {
+  flex: 1.2;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-left h4 {
+  font-family: 'Cinzel', serif;
+  color: #b8860b;
+  font-size: 1.3rem;
+  margin: 25px 0 15px 0;
+  border-left: 3px solid #b8860b;
+  padding-left: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.about-left p {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #e0e0e0;
+  margin-bottom: 10px;
+}
+
+.highlight-text { color: #b8860b; font-weight: bold; }
+.gold-star { color: #b8860b; margin-right: 10px; font-size: 1.1rem; }
+
+/* Right Side - Image with Floating Design */
+.about-right {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Golden Background Frame */
+.img-frame {
+  position: absolute;
+  width: 80%;
+  height: 70%;
+  border: 2px solid #b8860b;
+  border-top-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  transform: translate(-30px, -30px); /* Halka ja offset */
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.about-right img {
+  width: 80%;
+  height: auto;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  z-index: 2;
+  border-top-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+  transition: 0.5s ease;
+}
+
+/* Hover Effect */
+.about-right:hover img {
+  transform: translate(15px, 15px); /* Image frame de andar fit hoyegi */
+  box-shadow: 0px 0px 30px rgba(184, 134, 11, 0.4);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .about-section { flex-direction: column; padding: 60px 20px; text-align: center; }
+  .about-left h4 { border-left: none; padding-left: 0; }
+  .img-frame { display: none; } /* Mobile te frame hata ditta clean look layi */
+  .about-right img { width: 90%; }
+}
+@keyframes myFade {
+  0% { 
+    opacity: 0; 
+    transform: scale(0.98); /* ਹਲਕਾ ਜਿਹਾ ਛੋਟੇ ਤੋਂ ਵੱਡਾ ਹੋਵੇਗਾ, ਹਿੱਲੇਗਾ ਨਹੀਂ */
+  }
+  100% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+.fade-in-now {
+  animation: myFade 0.5s ease-out forwards !important; /* ਸਮਾਂ ਘਟਾ ਕੇ 0.5s ਕੀਤਾ */
+  will-change: opacity;
+}
+
+/* ਸੈਕਸ਼ਨਾਂ ਨੂੰ ਸ਼ੁਰੂ ਵਿੱਚ ਓਪੈਸਿਟੀ ਜ਼ੀਰੋ ਰੱਖੋ */
+.hero-container, .about-section {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+#specialties-list {
+    list-style: none; /* ਡੌਟਸ ਹਟਾਉਣ ਲਈ */
+    padding: 0;
+}
+
+#specialties-list li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+}
+
+
+
+/* third section*/
+/* Services Section Base */
+.services-section {
+  padding: 80px 50px;
+  background-color: #29073f; /* Thoda dark purple contrast layi */
+  color: #fff;
+  text-align: center;
+}
+
+/* Heading Design */
+.services-header {
+  margin-bottom: 50px;
+}
+
+.services-header .sub-title {
+  color: #b8860b;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.services-header h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 2.8rem;
+  color: #fff8EE;
+  margin: 10px 0;
+}
+
+.header-line {
+  width: 80px;
+  height: 3px;
+  background: #b8860b;
+  margin: 0 auto;
+  position: relative;
+}
+
+.header-line::after {
+  content: '✦';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3b1455;
+  padding: 0 10px;
+  color: #b8860b;
+}
+
+/* Grid Layout */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Service Cards */
+.service-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px 30px;
+  border-radius: 15px;
+  border: 1px solid rgba(184, 134, 11, 0.2);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.service-card:hover {
+  background: #4A1A6B;
+  transform: translateY(-10px);
+  border-color: #b8860b;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.icon-box {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.service-card h3 {
+  font-family: 'Cinzel', serif;
+  color: #b8860b;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.service-card p {
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ccc;
+}
+/*/* Glitter Shine Animation */
+@keyframes glitter {
+  0%, 100% { 
+    filter: drop-shadow(0 0 2px #b8860b) brightness(1);
+    stroke-width: 1.5;
+  }
+  50% { 
+    filter: drop-shadow(0 0 15px #fff) brightness(1.8);
+    stroke-width: 2;
+    stroke: #fff8EE; /* White Gold Shine */
+  }
+}
+
+/* Icons de charo taraf chote-chote Sparkles (✦) */
+.icon-box {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle, rgba(184, 134, 11, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.icon-box svg {
+  animation: glitter 3s infinite ease-in-out;
+  stroke: #b8860b;
+  transition: 0.5s;
+}
+
+/* Hover te Glitter fast te zyada sparkly ho javega */
+.service-card:hover .icon-box svg {
+  animation: glitter 0.8s infinite ease-in-out;
+  filter: drop-shadow(0 0 20px #b8860b);
+}
+
+/* Card te "Star Dust" effect (Optional) */
+.service-card::before {
+  content: '✦';
+  position: absolute;
+  top: 10px; right: 10px;
+  color: #b8860b;
+  font-size: 12px;
+  opacity: 0.3;
+  animation: twinkle 2s infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+
+/* --- Responsive (Iko Query vich saara kuch) --- */
+@media (max-width: 768px) {
+  .services-section {
+    padding: 50px 20px;
+  }
+  
+  .services-header h2 {
+    font-size: 2rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr; /* Mobile te 1 card per row */
+  }
+}
