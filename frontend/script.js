@@ -80,3 +80,84 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error('Error fetching data from DB:', error));
 });
+/*review section*/
+const track = document.getElementById("reviewsTrack");
+let reviews = [];
+let index = 0;
+let slideInterval;
+
+async function fetchReviews() {
+    try {
+        const res = await fetch('/jyotish-seva/api/get_reviews.php');
+        const result = await res.json();
+        
+        // 1. API ਦੇ ਅੰਦਰੋਂ 'data' ਕੱਢੋ ਅਤੇ ਸਿਰਫ status 1 ਵਾਲੇ ਫਿਲਟਰ ਕਰੋ
+        // ਨੋਟ: ਜੇ API status ਨਹੀਂ ਭੇਜ ਰਹੀ ਤਾਂ ਸਿਰਫ result.data ਵਰਤੋ
+        reviews = result.data ? result.data.filter(r => r.status == 1 || r.status == undefined) : [];
+
+        if (reviews.length === 0) {
+            reviews = Array(5).fill({ reviewer_name: "No Reviews", rating: 0, created_at: "", comment: "No reviews available yet." });
+        }
+
+        displayReviews();
+        startInfiniteSlide();
+    } catch (err) {
+        console.error("Error:", err);
+        reviews = Array(5).fill({ reviewer_name: "Empty", rating: 0, created_at: "", comment: "Error loading data." });
+        displayReviews();
+    }
+}
+
+function displayReviews() {
+    track.innerHTML = "";
+    const displayList = [...reviews, ...reviews];
+
+    displayList.forEach(review => {
+        const card = document.createElement("div");
+        card.classList.add("review-card");
+
+        // ਇੱਥੇ reviewer_name ਅਤੇ created_at ਦੀ ਵਰਤੋਂ ਕਰੋ ਜੋ API ਭੇਜ ਰਹੀ ਹੈ
+        card.innerHTML = `
+            <div class="review-top">
+                <span class="reviewer-name">${review.reviewer_name || 'Anonymous'}</span>
+                <span class="review-date">${review.created_at || ''}</span>
+            </div>
+            <div class="stars">
+                ${review.rating > 0 ? "★".repeat(review.rating) + "☆".repeat(5 - review.rating) : "☆☆☆☆☆"}
+            </div>
+            <p class="review-text">${review.comment}</p>
+        `;
+        track.appendChild(card);
+    });
+}
+
+
+function startInfiniteSlide() {
+    if(slideInterval) clearInterval(slideInterval);
+
+    slideInterval = setInterval(() => {
+        const card = document.querySelector(".review-card");
+        if (!card) return;
+
+        const gap = 30;
+        const cardWidth = card.offsetWidth + gap;
+        index++;
+
+        track.style.transition = "transform 0.6s cubic-bezier(0.45, 0, 0.55, 1)";
+        track.style.transform = `translateX(-${index * cardWidth}px)`;
+
+        // Reset logic for infinite loop
+        if (index >= reviews.length) {
+            setTimeout(() => {
+                track.style.transition = "none";
+                index = 0;
+                track.style.transform = `translateX(0px)`;
+            }, 600);
+        }
+    }, 3000);
+}
+
+// Start everything
+fetchReviews();
+
+
