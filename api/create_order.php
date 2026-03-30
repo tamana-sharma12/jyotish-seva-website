@@ -1,82 +1,41 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
-
+error_reporting(0);
+ini_set('display_errors', 0);
 require_once __DIR__ . '/../config/db.php';
+
+$key_id = "rzp_test_SVNwp9h4rEXVhF";
+$key_secret = "twVLCP2dDZdNevbTaJHecShG"; // Correct secret key
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-// 1. Sabse pehle variables extract karein
-$amount_in_paise = $data['amount'] ?? null;
+$amount = $data['amount'] ?? 500;
 $slot_id = $data['slot_id'] ?? null;
 $booking_date = $data['booking_date'] ?? null;
 
-// 2. Required fields check
-if(!$amount_in_paise || !$slot_id || !$booking_date) {
-    echo json_encode([
-        "success" => false, 
-        "message" => "Amount, Slot ID, and Booking Date are required",
-        "error" => "MISSING_FIELDS"
-    ]);
-    exit;
+if(!$amount || !$slot_id || !$booking_date){
+    echo json_encode(["success"=>false,"message"=>"Missing fields"]); exit;
 }
 
-// 3. Date Validation (Future date check)
-$today = date('Y-m-d');
-if ($booking_date < $today) {
-    echo json_encode([
-        "success" => false,
-        "message" => "Past dates are not allowed for booking",
-        "error" => "INVALID_DATE"
-    ]);
-    exit;
-}
+// Create Razorpay order
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, "https://api.razorpay.com/v1/orders");
+curl_setopt($ch, CURLOPT_USERPWD, $key_id.":".$key_secret);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
+    'amount' => $amount*100,
+    'currency' => 'INR',
+    'payment_capture' => 1
+]));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+$response = curl_exec($ch);
+$err = curl_error($ch);
+curl_close($ch);
 
-try {
-    // --- STEP 1: Slot availability check ---
-    $check_sql = "SELECT id FROM bookings WHERE slot_id = ? AND booking_date = ? AND status = 'confirmed'";
-    $check_stmt = $conn->prepare($check_sql);
-    $check_stmt->execute([$slot_id, $booking_date]);
+if($err){ echo json_encode(["success"=>false,"message"=>$err]); exit; }
 
-    if($check_stmt->rowCount() > 0) {
-        echo json_encode([
-            "success" => false,
-            "message" => "This slot is already booked. Please choose another.",
-            "error" => "SLOT_OCCUPIED"
-        ]);
-        exit;
-    }
+$order = json_decode($response,true);
+if(!isset($order['id'])){ echo json_encode(["success"=>false,"message"=>"Order ID missing"]); exit; }
 
-    // --- STEP 2: Mock Order ID Generate karna ---
-    $mockOrderId = "order_mock_" . bin2hex(random_bytes(6));
-    $amount_in_rupees = $amount_in_paise / 100; // Rs. 501.00
-
-    // --- STEP 3: Database mein INSERT karna ---
-    $sql = "INSERT INTO orders (order_id, amount, status) VALUES (:order_id, :amount, :status)";
-    $stmt = $conn->prepare($sql);
-    
-    $status = "pending";
-    $stmt->bindParam(':order_id', $mockOrderId);
-    $stmt->bindParam(':amount', $amount_in_rupees);
-    $stmt->bindParam(':status', $status);
-    
-    if($stmt->execute()) {
-        echo json_encode([
-            "success" => true,
-            "data" => [
-                "order_id" => $mockOrderId,
-                "amount" => $amount_in_rupees
-            ],
-            "message" => "Order created successfully"
-        ]);
-    }
-
-} catch (\PDOException $e) {
-    echo json_encode([
-        "success" => false, 
-        "message" => "Database Error", 
-        "error" => $e->getMessage()
-    ]);
-}
+echo json_encode(["success"=>true,"data"=>["order_id"=>$order['id'], "amount"=>$amount], "message"=>"Order created successfully"]);
 ?>

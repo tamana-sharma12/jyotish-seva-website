@@ -6,17 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jyotish Seva - Astrology & Future</title>
 
-    <!-- 2. FontAwesome Icons (Full Link) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+    <!-- 1. FontAwesome (optional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- 3. Your Style CSS -->
+    <!-- 2. Your Style CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- 4. Google Fonts -->
+    <!-- 3. Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net">
-<script src="https://cdn.jsdelivr.net"></script>
-  </head>
+
+    <!-- 4. Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- 5. Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
 
 <body>
   <nav class="navbar">
@@ -31,7 +36,7 @@
       <li><a href="#reviews">Reviews</a></li>
     </ul>
     <div class="nav-right">
-      <button class="book-btn">Book Appointment</button>
+      <a href="#booking" class="book-btn">Book Appointment</a>
       <div class="menu-toggle" id="menuToggle">☰</div>
     </div>
   </nav>
@@ -46,7 +51,7 @@
   <p class="sub-heading" id="hero-tagline"></p>
   
   <div class="hero-buttons">
-    <button class="btn-book">Book Now</button>
+    <a href="#booking" class="btn-book">Book Now</a>
   </div>
 </section>
  </div>
@@ -167,7 +172,7 @@
   <path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5" fill="rgba(184, 134, 11, 0.2)"></path>
   <circle cx="12" cy="12" r="5"></circle>
   <path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"></path>
-</svg>
+    </svg>
 
   </div>
   <h3>Western Astrology</h3>
@@ -192,7 +197,7 @@
 
 </section>
 
-<section class="reviews-section">
+<section class="reviews-section" id="reviews">
   <div class="reviews-header">
     <p class="sub-title">Testimonials</p>
     <h2>What Our Clients Say</h2>
@@ -206,7 +211,192 @@
   </div>
 </section>
 
+<!--select date and time-->
+<section class="booking-section" id="booking">
+    <div class="services-header">
+        <span class="sub-title">RESERVATION</span>
+        <h2>Select Booking Slot</h2>
+        <div class="header-line"></div>
+    </div>
 
+    <div class="booking-container">
+
+        <!-- LEFT -->
+        <div class="booking-column action-item" id="dateTrigger">
+            <i class="fa fa-calendar"></i>
+            <h4 class="column-title" id="dateText">Choose Date</h4>
+            <input type="text" id="datePicker">
+        </div>
+
+        <!-- RIGHT -->
+        <div class="booking-column action-item" id="slotsTrigger">
+            <i class="fa fa-clock"></i>
+            <h4 class="column-title">Slots</h4>
+        </div>
+
+    </div>
+
+    <!-- Slots Popup -->
+    <div id="slotsPopup" class="popup">
+        <div id="slots_container" class="slots-grid"></div>
+    </div>
+
+    <input type="hidden" id="selected_date">
+    <input type="hidden" id="slot_id_input">
+</section>
+
+
+<!-- Booking Form Section -->
+<section id="booking-form-section" class="booking-form-section">
+    
+    <!-- ਬਾਕੀ ਸੈਕਸ਼ਨਾਂ ਵਰਗੀ Attractive Heading -->
+    <div class="services-header">
+        <span class="sub-title">FINAL STEP</span>
+        <h2>Complete Your Booking</h2>
+        <div class="header-line"></div>
+    </div>
+
+    <!-- Advance Payment Badge (ਜੋ 500 ਰੁਪਏ ਬਾਰੇ ਦੱਸੇਗਾ) -->
+    <div class="payment-badge">
+        <i class="fas fa-shield-alt"></i>
+        <span>Advance Payment: <strong>₹500</strong> to Confirm Booking</span>
+    </div>
+
+    <form id="bookingForm">
+        <div class="form-grid">
+            <div class="form-group">
+                <label><i class="fas fa-user"></i> Full Name</label>
+                <input type="text" name="name" placeholder="Enter your full name" >
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-envelope"></i> Email Address</label>
+                <input type="email" name="email" placeholder="example@mail.com" >
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-phone-alt"></i> Phone Number</label>
+                <input type="tel" name="phone" placeholder="10 Digit Number" pattern="[0-9]{10}" >
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-calendar-day"></i> Date of Birth</label>
+                <input type="date" name="dob" >
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-clock"></i> Time of Birth</label>
+                <input type="time" name="tob" >
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-map-marker-alt"></i> Place of Birth</label>
+                <input type="text" name="birth_place" placeholder="City, State, Country" >
+            </div>
+
+            <div class="form-group">
+                <label>Appointment Date</label>
+                <input type="text" id="form_date" class="locked-input" readonly>
+            </div>
+
+            <div class="form-group">
+    <label>Time Slot</label>
+    <input type="text" id="form_slot" class="locked-input" readonly>
+    <!-- Hidden input to store actual slot ID for backend -->
+    <input type="hidden" id="slot_id_input" name="slot_id">
+</div>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          Proceed to Payment <i class="fas fa-chevron-right"></i>
+        </button>
+    </form>
+
+</section>
+<!--rating-->
+<section class="stars_section" id="rating">
+  <div class="reviews-header">
+    <span class="sub-title">Your Feedback Matters</span>
+    <h2>Rate Our Service</h2>
+    <div class="header-line"></div>
+  </div>
+
+  <div class="rating-container">
+    <div class="stars-select">
+      <i class="fas fa-star" data-value="1"></i>
+      <i class="fas fa-star" data-value="2"></i>
+      <i class="fas fa-star" data-value="3"></i>
+      <i class="fas fa-star" data-value="4"></i>
+      <i class="fas fa-star" data-value="5"></i>
+    </div>
+  </div>
+
+  <div class="rating-form">
+    <input type="text" id="userName" placeholder="Your Name">
+    <textarea id="userComment" placeholder="Your Comment"></textarea>
+    <button id="submitRating" class="submit-btn">Submit Rating</button>
+    <span id="ratingMsg" class="error-msg"></span>
+  </div>
+</section>
+
+<!--footer-->
+<!-- FOOTER SECTION -->
+<footer class="site-footer">
+  <div class="footer-container">
+    
+    <!-- Logo & About -->
+    <div class="footer-about">
+      <div class="footer-logo">☀︎ ज्य𝕺𝖙𝖎𝖘𝖍 𝕾𝖊𝖛𝖆</div>
+      <p>Providing accurate astrology, numerology, and life guidance to help you navigate your destiny.</p>
+      <p>Consultation Hours: Mon - Sat: 10AM - 8PM</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home" class="footer-link">Home</a></li>
+        <li><a href="#about" class="footer-link">About</a></li>
+        <li><a href="#services" class="footer-link">Services</a></li>
+        <li><a href="#reviews" class="footer-link">Reviews</a></li>
+        <li><a href="#booking-form-section" class="footer-link">Book Appointment</a></li>
+        <li><a href="#" class="footer-link">Privacy Policy</a></li>
+        <li><a href="#" class="footer-link">Terms & Conditions</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+      <p><i class="fas fa-envelope"></i> contact@jyotishseva.fake</p>
+      <p><i class="fas fa-map-marker-alt"></i> Mumbai, India</p>
+      <div class="social-icons">
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <!-- Mini Services -->
+    <div class="footer-services">
+      <h4>Our Services</h4>
+      <ul>
+        <li>Vedic Astrology</li>
+        <li>Numerology</li>
+        <li>Palmistry</li>
+        <li>Gemstone Advice</li>
+        <li>Life Guidance</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Jyotish Seva. All Rights Reserved. Designed with ❤️</p>
+  </div>
+</footer>
 
 <script src="script.js"></script>
 </body>
