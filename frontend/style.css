@@ -412,7 +412,6 @@
   color: #e0e0e0;
 }
 
-/* Fade-in animation */
 
 
 /* Services Section  */
@@ -664,7 +663,7 @@
   gap: 30px;
 }
 
-/* --- REVIEW CARD (Matching Services Style) --- */
+/* --- REVIEW CARD*/
 .review-card {
   flex: 0 0 calc(33.333% - 20px);
   min-height: 280px;
@@ -749,7 +748,6 @@
 
 
 
-/* select date and time */
 /* =========================
    BOOKING SECTION
 ========================= */
@@ -933,7 +931,7 @@
     }
 }
 
-/*booking form */
+
 /* Booking Form Section */
 .booking-form-section {
     padding: 80px 50px;
@@ -978,7 +976,7 @@
     color:var(--text);
 }
 
-/* Attractive Inputs */
+/*  Inputs */
 .form-group input,
 .form-group textarea {
     padding: 12px;
@@ -1028,18 +1026,18 @@
     transform: scale(1.03);
 }
 .payment-badge {
-    display: inline-flex;          /* icon + text side by side */
+    display: inline-flex;       
     align-items: center;
-    gap: 8px;                     /* space between icon and text */
-    background: rgba(184, 134, 11, 0.1); /* subtle golden background */
-    color: var(--gold);               /* golden text */
+    gap: 8px;                    
+    background: rgba(184, 134, 11, 0.1);
+    color: var(--gold);               
     font-weight: bold;
     padding: 10px 15px;
     border-radius: 8px;
     border: 1px solid var(--gold);
     margin-bottom: 30px;
     position: relative;
-    top: -10px;                   /* move slightly up */
+    top: -10px;                  
     font-size: 14px;
 }
 
@@ -1081,12 +1079,12 @@ input:focus.error, textarea:focus.error, select:focus.error {
     }
 }
 
-/*rating*/
+
 /* =========================
    RATING SECTION
 ========================= */
 .stars_section {
-    background-color: #29073f; /* Section background */
+    background-color: #29073f; 
     padding: 40px 20px;
     color: #fff;
     font-family: Arial, sans-serif;
@@ -1146,7 +1144,8 @@ s
     display: flex;
     justify-content: center;
     margin-bottom: 12px;
-    margin-top: -8px; /* move stars slightly up */
+    margin-top: -8px; 
+
 }
 /* Name + Comment inputs */
 .rating-form {
